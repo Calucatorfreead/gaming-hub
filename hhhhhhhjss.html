@@ -1,0 +1,3219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADAM ELAZRI | Creator Hub</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial,Helvetica,sans-serif;
+    }
+
+    :root{
+      --bg:#050509;
+      --bg2:#0a0a12;
+      --card:#10101a;
+      --card2:#141422;
+      --line:#25253a;
+      --text:#fff;
+      --muted:#9191a7;
+      --cyan:#00e5ff;
+      --purple:#8b5cf6;
+      --pink:#ff2bd6;
+      --green:#00ff88;
+      --yellow:#ffd43b;
+      --red:#ff3e62;
+      --orange:#ff8a00;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      min-height:100vh;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 10% 10%,rgba(139,92,246,.15),transparent 28%),
+        radial-gradient(circle at 90% 20%,rgba(0,229,255,.10),transparent 25%),
+        radial-gradient(circle at 50% 100%,rgba(255,43,214,.07),transparent 30%),
+        var(--bg);
+      overflow-x:hidden;
+    }
+
+    button,input{
+      font:inherit;
+    }
+
+    button{
+      cursor:pointer;
+    }
+
+    .hidden{
+      display:none !important;
+    }
+
+    #particles{
+      position:fixed;
+      inset:0;
+      width:100%;
+      height:100%;
+      z-index:-1;
+      pointer-events:none;
+    }
+
+    #flash{
+      position:fixed;
+      inset:0;
+      background:#fff;
+      opacity:0;
+      pointer-events:none;
+      z-index:9999;
+    }
+
+    .flash{
+      animation:flashAnim .3s ease;
+    }
+
+    @keyframes flashAnim{
+      from{opacity:.45}
+      to{opacity:0}
+    }
+
+    /* ================= LOGIN ================= */
+
+    #loginScreen{
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+    }
+
+    .login-wrap{
+      width:100%;
+      max-width:470px;
+    }
+
+    .login-box{
+      padding:34px;
+      border-radius:30px;
+      background:rgba(11,11,19,.84);
+      backdrop-filter:blur(18px);
+      border:1px solid rgba(139,92,246,.3);
+      box-shadow:
+        0 0 70px rgba(139,92,246,.13),
+        inset 0 0 30px rgba(255,255,255,.02);
+      text-align:center;
+    }
+
+    .brand{
+      font-size:34px;
+      font-weight:1000;
+      letter-spacing:4px;
+      background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .brand-small{
+      color:var(--muted);
+      margin-top:8px;
+      margin-bottom:26px;
+      letter-spacing:2px;
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .input{
+      width:100%;
+      margin:8px 0;
+      padding:15px;
+      color:#fff;
+      background:#080811;
+      border:1px solid #2a2a3f;
+      border-radius:14px;
+      outline:none;
+    }
+
+    .input:focus{
+      border-color:var(--purple);
+      box-shadow:0 0 18px rgba(139,92,246,.16);
+    }
+
+    .btn{
+      border:none;
+      color:#fff;
+      font-weight:1000;
+      padding:13px 18px;
+      border-radius:14px;
+      transition:.2s ease;
+      background:linear-gradient(90deg,var(--purple),var(--pink));
+      box-shadow:0 0 25px rgba(139,92,246,.22);
+    }
+
+    .btn:hover{
+      transform:translateY(-2px);
+      box-shadow:0 0 32px rgba(139,92,246,.36);
+    }
+
+    .btn.secondary{
+      background:#171724;
+      border:1px solid #303047;
+      box-shadow:none;
+    }
+
+    .btn.green{
+      background:linear-gradient(90deg,#00b86b,var(--green));
+      color:#04110b;
+    }
+
+    .btn.gold{
+      background:linear-gradient(90deg,#a96d00,var(--yellow));
+      color:#181100;
+    }
+
+    .btn.red{
+      background:linear-gradient(90deg,#a41538,var(--red));
+    }
+
+    .login-note{
+      color:#6f6f86;
+      margin-top:14px;
+      font-size:11px;
+      line-height:1.5;
+    }
+
+    /* ================= NAV ================= */
+
+    #app{
+      min-height:100vh;
+    }
+
+    nav{
+      position:sticky;
+      top:0;
+      z-index:100;
+      padding:14px 5%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:15px;
+      background:rgba(5,5,9,.76);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+
+    .nav-brand{
+      font-size:20px;
+      font-weight:1000;
+      letter-spacing:2px;
+    }
+
+    .nav-stats{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      gap:8px;
+    }
+
+    .nav-pill{
+      padding:8px 11px;
+      border-radius:12px;
+      background:#10101a;
+      border:1px solid #242437;
+      font-size:12px;
+      font-weight:900;
+    }
+
+    .rank-pill{
+      display:flex;
+      align-items:center;
+      gap:6px;
+    }
+
+    /* ================= MAIN ================= */
+
+    main{
+      width:min(1200px,92%);
+      margin:auto;
+      padding:32px 0 70px;
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      padding:48px;
+      min-height:430px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:35px;
+      border-radius:32px;
+      border:1px solid rgba(255,255,255,.08);
+      background:
+        linear-gradient(135deg,rgba(139,92,246,.12),rgba(0,229,255,.035)),
+        rgba(9,9,16,.72);
+      box-shadow:0 30px 90px rgba(0,0,0,.24);
+    }
+
+    .hero:after{
+      content:"";
+      position:absolute;
+      width:420px;
+      height:420px;
+      border-radius:50%;
+      right:-140px;
+      top:-140px;
+      background:var(--purple);
+      filter:blur(150px);
+      opacity:.12;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+    }
+
+    .eyebrow{
+      color:var(--cyan);
+      letter-spacing:3px;
+      font-size:12px;
+      font-weight:1000;
+      margin-bottom:14px;
+    }
+
+    .hero h1{
+      font-size:clamp(42px,7vw,82px);
+      line-height:.9;
+      font-weight:1000;
+    }
+
+    .gradient{
+      background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .hero p{
+      color:#a2a2b7;
+      max-width:610px;
+      line-height:1.7;
+      margin:20px 0;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .orb{
+      width:260px;
+      height:260px;
+      flex:none;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:80px;
+      background:
+        radial-gradient(circle at center,#1b1b31 0 27%,transparent 28%),
+        conic-gradient(from 0deg,var(--cyan),var(--purple),var(--pink),var(--cyan));
+      box-shadow:
+        0 0 45px rgba(0,229,255,.18),
+        0 0 85px rgba(139,92,246,.26);
+      animation:floatOrb 4s ease-in-out infinite;
+    }
+
+    @keyframes floatOrb{
+      0%,100%{transform:translateY(0) rotate(0)}
+      50%{transform:translateY(-12px) rotate(3deg)}
+    }
+
+    /* ================= SECTIONS ================= */
+
+    .section{
+      margin-top:30px;
+    }
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      margin-bottom:14px;
+    }
+
+    .section-head h2{
+      font-size:24px;
+    }
+
+    .section-head span{
+      color:var(--muted);
+      font-size:12px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+
+    .card{
+      background:linear-gradient(145deg,#10101a,#090910);
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:20px;
+      transition:.22s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-4px);
+      border-color:#3e3e5d;
+      box-shadow:0 15px 35px rgba(0,0,0,.22);
+    }
+
+    .card h3{
+      margin-bottom:7px;
+    }
+
+    .muted{
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+    }
+
+    .big-icon{
+      font-size:40px;
+      margin-bottom:10px;
+    }
+
+    .full{
+      width:100%;
+    }
+
+    /* ================= RANK ================= */
+
+    .rank-card{
+      display:grid;
+      grid-template-columns:180px 1fr;
+      gap:22px;
+      align-items:center;
+    }
+
+    .rank-box{
+      text-align:center;
+      padding:25px 12px;
+      border-radius:20px;
+      border:1px solid #2b2b42;
+      background:#080811;
+    }
+
+    .rank-icon-big{
+      display:block;
+      font-size:54px;
+      margin-bottom:10px;
+    }
+
+    .rank-name-big{
+      font-weight:1000;
+      letter-spacing:1px;
+    }
+
+    .progress-track{
+      height:12px;
+      margin-top:10px;
+      border-radius:99px;
+      overflow:hidden;
+      background:#1a1a28;
+    }
+
+    .progress-fill{
+      width:0;
+      height:100%;
+      border-radius:99px;
+      background:linear-gradient(90deg,var(--cyan),var(--purple),var(--pink));
+      transition:.5s;
+    }
+
+    .rank-list{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:10px;
+      margin-top:15px;
+    }
+
+    .rank-item{
+      padding:12px 8px;
+      text-align:center;
+      border-radius:14px;
+      background:#0c0c14;
+      border:1px solid #212133;
+    }
+
+    .rank-item .ri{
+      font-size:26px;
+      margin-bottom:5px;
+    }
+
+    .rank-item .rn{
+      font-size:10px;
+      font-weight:1000;
+    }
+
+    .rank-item .rx{
+      color:#727289;
+      font-size:9px;
+      margin-top:3px;
+    }
+
+    /* ================= STORE ================= */
+
+    .store-grid{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:10px;
+    }
+
+    .store-item{
+      padding:16px 10px;
+      text-align:center;
+      border-radius:16px;
+      background:#0e0e17;
+      border:1px solid #25253a;
+    }
+
+    .store-emoji{
+      font-size:31px;
+      margin-bottom:7px;
+    }
+
+    .store-name{
+      font-size:12px;
+      font-weight:1000;
+    }
+
+    .store-price{
+      color:var(--yellow);
+      font-size:12px;
+      margin:8px 0;
+    }
+
+    .store-item .btn{
+      width:100%;
+      padding:9px;
+      font-size:11px;
+      box-shadow:none;
+    }
+
+    /* ================= PHONE DEALER ================= */
+
+    .dealer-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:15px;
+    }
+
+    .dealer-panel{
+      border-radius:22px;
+      padding:22px;
+      min-height:350px;
+      border:1px solid #2a2a40;
+      background:
+        radial-gradient(circle at 50% 40%,rgba(139,92,246,.12),transparent 50%),
+        #0d0d16;
+    }
+
+    .dealer-center{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      height:100%;
+    }
+
+    .dealer-phone-icon{
+      font-size:86px;
+      margin:5px 0 12px;
+      animation:phoneFloat 2.7s ease-in-out infinite;
+    }
+
+    @keyframes phoneFloat{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-9px)}
+    }
+
+    .spin-buttons{
+      display:flex;
+      gap:10px;
+      margin-top:18px;
+      width:100%;
+      max-width:410px;
+    }
+
+    .spin-buttons .btn{
+      flex:1;
+    }
+
+    .result-box{
+      min-height:28px;
+      margin-top:14px;
+      text-align:center;
+      font-weight:1000;
+    }
+
+    .inventory{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      max-height:430px;
+      overflow:auto;
+      padding-right:3px;
+    }
+
+    .phone-item{
+      border-radius:16px;
+      padding:13px;
+      background:#12121d;
+      border:1px solid #29293d;
+    }
+
+    .phone-top{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+    }
+
+    .phone-icon{
+      font-size:32px;
+    }
+
+    .phone-model{
+      font-size:12px;
+      font-weight:1000;
+    }
+
+    .rarity{
+      font-size:10px;
+      font-weight:1000;
+      margin-top:3px;
+    }
+
+    .sell-value{
+      color:var(--yellow);
+      font-size:11px;
+      margin-top:7px;
+    }
+
+    .sell-btn{
+      margin-top:9px;
+      width:100%;
+      padding:8px;
+      border-radius:10px;
+      border:none;
+      background:#1c1c2a;
+      color:#fff;
+      font-weight:900;
+    }
+
+    /* ================= CAR GAME ================= */
+
+    .car-game-wrap{
+      display:grid;
+      grid-template-columns:1fr 260px;
+      gap:15px;
+    }
+
+    .game-screen{
+      position:relative;
+      height:480px;
+      border-radius:24px;
+      overflow:hidden;
+      border:1px solid #2b2b40;
+      background:#06060b;
+    }
+
+    #carCanvas{
+      width:100%;
+      height:100%;
+      display:block;
+    }
+
+    .game-hud{
+      position:absolute;
+      top:12px;
+      left:12px;
+      right:12px;
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
+      pointer-events:none;
+    }
+
+    .hud-pill{
+      padding:8px 10px;
+      border-radius:11px;
+      background:rgba(7,7,12,.75);
+      border:1px solid rgba(255,255,255,.09);
+      font-size:11px;
+      font-weight:1000;
+      backdrop-filter:blur(8px);
+    }
+
+    .car-controls{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      align-content:start;
+    }
+
+    .control-btn{
+      min-height:58px;
+      border:none;
+      border-radius:15px;
+      color:#fff;
+      background:#141421;
+      border:1px solid #2b2b40;
+      font-size:22px;
+      font-weight:1000;
+    }
+
+    .control-btn:hover{
+      background:#1b1b2c;
+    }
+
+    .boost{
+      grid-column:1/-1;
+      background:linear-gradient(90deg,#5d28e8,var(--purple));
+    }
+
+    .car-tip{
+      margin-top:12px;
+      padding:13px;
+      border-radius:14px;
+      background:#0e0e17;
+      border:1px solid #222238;
+      color:#83839b;
+      font-size:11px;
+      line-height:1.5;
+    }
+
+    /* ================= LEADERBOARD ================= */
+
+    .leader-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      padding:13px 3px;
+      border-bottom:1px solid #202032;
+    }
+
+    .leader-row:last-child{
+      border-bottom:0;
+    }
+
+    .leader-left{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .position{
+      width:29px;
+      height:29px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#181827;
+      font-weight:1000;
+      font-size:12px;
+    }
+
+    /* ================= TOAST ================= */
+
+    #toast{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:10000;
+      padding:14px 18px;
+      border-radius:14px;
+      background:#151521;
+      border:1px solid #393950;
+      font-weight:900;
+      box-shadow:0 15px 40px rgba(0,0,0,.45);
+      opacity:0;
+      transform:translateY(90px);
+      transition:.3s;
+      pointer-events:none;
+      max-width:320px;
+    }
+
+    #toast.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer{
+      padding:40px 5%;
+      text-align:center;
+      border-top:1px solid #1b1b29;
+      color:#707087;
+    }
+
+    .yt{
+      display:inline-block;
+      margin-top:15px;
+      padding:12px 18px;
+      background:#ff0033;
+      color:#fff;
+      text-decoration:none;
+      border-radius:12px;
+      font-weight:1000;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media(max-width:900px){
+      .hero{
+        flex-direction:column;
+        text-align:center;
+      }
+
+      .hero p{
+        margin-left:auto;
+        margin-right:auto;
+      }
+
+      .grid{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .store-grid{
+        grid-template-columns:repeat(3,1fr);
+      }
+
+      .car-game-wrap{
+        grid-template-columns:1fr;
+      }
+
+      .car-controls{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .rank-list{
+        grid-template-columns:repeat(5,1fr);
+      }
+    }
+
+    @media(max-width:650px){
+      nav{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .nav-stats{
+        justify-content:center;
+      }
+
+      .hero{
+        padding:30px 20px;
+      }
+
+      .orb{
+        width:185px;
+        height:185px;
+        font-size:58px;
+      }
+
+      .grid{
+        grid-template-columns:1fr;
+      }
+
+      .dealer-grid{
+        grid-template-columns:1fr;
+      }
+
+      .rank-card{
+        grid-template-columns:1fr;
+      }
+
+      .rank-list{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .inventory{
+        grid-template-columns:1fr;
+      }
+
+      .store-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+
+      .spin-buttons{
+        flex-direction:column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+<div id="flash"></div>
+
+<!-- LOGIN -->
+<section id="loginScreen">
+  <div class="login-wrap">
+    <div class="login-box">
+
+      <div class="brand">ADAM ELAZRI</div>
+      <div class="brand-small">CREATOR GAMING HUB</div>
+
+      <input
+        id="usernameInput"
+        class="input"
+        type="text"
+        maxlength="20"
+        placeholder="Username"
+      >
+
+      <input
+        id="emailInput"
+        class="input"
+        type="email"
+        placeholder="Gmail"
+      >
+
+      <button class="btn full" onclick="enterSite()">
+        ENTER CREATOR HUB 🚀
+      </button>
+
+      <div class="login-note">
+        Gmail is used only as the required login field in this demo.
+        No password is requested.
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- APP -->
+<div id="app" class="hidden">
+
+  <nav>
+
+    <div class="nav-brand">ADAM ELAZRI</div>
+
+    <div class="nav-stats">
+
+      <div class="nav-pill">
+        👤 <span id="navUser">Player</span>
+      </div>
+
+      <div class="nav-pill rank-pill">
+        <span id="navRankIcon">🪨</span>
+        <span id="navRank">ROOKIE</span>
+      </div>
+
+      <div class="nav-pill">
+        ⭐ LVL <span id="navLevel">1</span>
+      </div>
+
+      <div class="nav-pill">
+        💰 <span id="navCoins">0</span>
+      </div>
+
+      <button class="nav-pill" onclick="logoutDemo()">
+        LOGOUT
+      </button>
+
+    </div>
+  </nav>
+
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <div class="eyebrow">
+          THE BEST CREATOR IN THE WORLD
+        </div>
+
+        <h1>
+          ADAM<br>
+          <span class="gradient">ELAZRI</span>
+        </h1>
+
+        <p>
+          Play mini-games, collect phones, buy styles,
+          unlock powerful ranks and build your creator profile.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn" onclick="goTo('games')">
+            PLAY NOW 🎮
+          </button>
+
+          <button class="btn secondary" onclick="goTo('dealer')">
+            PHONE DEALER 📱
+          </button>
+
+          <button class="btn secondary" onclick="goTo('carGame')">
+            CAR RACE 🏎️
+          </button>
+        </div>
+
+      </div>
+
+      <div class="orb">⚡</div>
+
+    </section>
+
+
+    <!-- RANK -->
+    <section class="section">
+
+      <div class="section-head">
+        <h2>🏆 YOUR RANK</h2>
+        <span>Earn XP to climb</span>
+      </div>
+
+      <div class="card rank-card">
+
+        <div class="rank-box">
+          <span class="rank-icon-big" id="bigRankIcon">🪨</span>
+          <div class="rank-name-big" id="bigRankName">ROOKIE</div>
+        </div>
+
+        <div>
+
+          <h3 id="rankProgressText">
+            Keep playing!
+          </h3>
+
+          <div class="muted">
+            Current XP:
+            <strong id="currentXP">0</strong> / 100
+          </div>
+
+          <div class="progress-track">
+            <div class="progress-fill" id="xpBar"></div>
+          </div>
+
+          <div class="muted" style="margin-top:10px;">
+            Total XP:
+            <strong id="totalXP">0</strong>
+          </div>
+
+          <div class="rank-list" id="rankList"></div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- DAILY -->
+    <section class="section">
+
+      <div class="section-head">
+        <h2>🎁 DAILY REWARD</h2>
+        <span>100 coins + XP</span>
+      </div>
+
+      <div class="card">
+
+        <h3>Daily Creator Drop</h3>
+
+        <div class="muted">
+          Claim your reward once every day.
+        </div>
+
+        <button class="btn gold" style="margin-top:14px;" onclick="claimDaily()">
+          CLAIM 100 💰
+        </button>
+
+        <div id="dailyStatus" class="muted" style="margin-top:12px;"></div>
+
+      </div>
+    </section>
+
+
+    <!-- MINI GAMES -->
+    <section class="section" id="games">
+
+      <div class="section-head">
+        <h2>🎮 MINI GAMES</h2>
+        <span>Fast rewards</span>
+      </div>
+
+      <div class="grid">
+
+        <!-- STOP -->
+        <div class="card">
+          <div class="big-icon">🛑</div>
+          <h3>STOP NUMBER</h3>
+          <div class="muted">
+            Stop exactly on the target.
+          </div>
+
+          <div style="font-size:38px;font-weight:1000;margin-top:12px;" id="stopNumber">
+            1
+          </div>
+
+          <div class="muted">
+            Target:
+            <strong id="stopTarget">?</strong>
+          </div>
+
+          <button class="btn" style="margin-top:14px;width:100%;" onclick="startStop()">
+            START
+          </button>
+
+          <button class="btn secondary" style="margin-top:8px;width:100%;" onclick="stopStop()">
+            STOP
+          </button>
+
+          <div id="stopStatus" class="muted" style="margin-top:10px;"></div>
+        </div>
+
+
+        <!-- LUCKY -->
+        <div class="card">
+          <div class="big-icon">🎰</div>
+          <h3>LUCKY SPIN</h3>
+          <div class="muted">
+            Free spin for coin rewards.
+          </div>
+
+          <div style="font-size:46px;margin-top:15px;">
+            🎡
+          </div>
+
+          <button class="btn" style="margin-top:15px;width:100%;" onclick="luckySpin()">
+            SPIN
+          </button>
+
+          <div id="luckyStatus" class="muted" style="margin-top:10px;"></div>
+        </div>
+
+
+        <!-- CLICK -->
+        <div class="card">
+          <div class="big-icon">👆</div>
+          <h3>QUICK CLICK</h3>
+          <div class="muted">
+            Click as much as you can in 5 seconds.
+          </div>
+
+          <div style="font-size:38px;font-weight:1000;margin-top:12px;" id="clickCount">
+            0
+          </div>
+
+          <button class="btn" style="margin-top:14px;width:100%;" onclick="startClickGame()">
+            START
+          </button>
+
+          <button class="btn secondary" style="margin-top:8px;width:100%;" onclick="clickHit()">
+            CLICK!
+          </button>
+
+          <div id="clickStatus" class="muted" style="margin-top:10px;"></div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- STORE -->
+    <section class="section" id="store">
+
+      <div class="section-head">
+        <h2>🛒 NAME STYLE STORE</h2>
+        <span>Customize your profile</span>
+      </div>
+
+      <div class="store-grid" id="storeGrid"></div>
+
+    </section>
+
+
+    <!-- PHONE DEALER -->
+    <section class="section" id="dealer">
+
+      <div class="section-head">
+        <h2>📱 PHONE DEALER</h2>
+        <span>Normal + VIP</span>
+      </div>
+
+      <div class="dealer-grid">
+
+        <div class="dealer-panel">
+
+          <div class="dealer-center">
+
+            <div class="dealer-phone-icon" id="dealerIcon">
+              📱
+            </div>
+
+            <h2>PHONE SPIN</h2>
+
+            <div class="muted" style="margin-top:7px;">
+              Collect phones and sell them for coins.
+            </div>
+
+            <div class="spin-buttons">
+
+              <button class="btn" onclick="phoneSpin('normal')">
+                NORMAL<br>
+                500 💰
+              </button>
+
+              <button class="btn gold" onclick="phoneSpin('vip')">
+                VIP 👑<br>
+                1500 💰
+              </button>
+
+            </div>
+
+            <div id="phoneResult" class="result-box"></div>
+
+          </div>
+
+        </div>
+
+
+        <div class="dealer-panel">
+
+          <h3 style="margin-bottom:12px;">
+            📦 PHONE INVENTORY
+          </h3>
+
+          <div id="phoneInventory" class="inventory"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- 2D CAR GAME -->
+    <section class="section" id="carGame">
+
+      <div class="section-head">
+        <h2>🏎️ 2D NEON CAR RACE</h2>
+        <span>Simple + lightweight</span>
+      </div>
+
+      <div class="car-game-wrap">
+
+        <div class="game-screen">
+
+          <canvas id="carCanvas"></canvas>
+
+          <div class="game-hud">
+            <div class="hud-pill">
+              SCORE:
+              <span id="carScore">0</span>
+            </div>
+
+            <div class="hud-pill">
+              COINS:
+              <span id="carCoins">0</span>
+            </div>
+
+            <div class="hud-pill">
+              ❤️
+              <span id="carLives">3</span>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <div class="card">
+
+            <h3>RACE CONTROLS</h3>
+
+            <div class="muted" style="margin-top:6px;">
+              Dodge obstacles, collect coins and use BOOST.
+            </div>
+
+            <div class="car-controls" style="margin-top:14px;">
+
+              <button class="control-btn" onclick="moveCar('left')">
+                ◀
+              </button>
+
+              <button class="control-btn" onclick="moveCar('right')">
+                ▶
+              </button>
+
+              <button class="control-btn boost" onclick="boostCar()">
+                ⚡ BOOST
+              </button>
+
+            </div>
+
+            <button class="btn" style="width:100%;margin-top:12px;" onclick="startCarGame()">
+              START RACE
+            </button>
+
+            <div id="carStatus" class="muted" style="margin-top:10px;">
+              Ready.
+            </div>
+
+            <div class="car-tip">
+              PC: use A / D or ← / →.<br>
+              Mobile: use the buttons.
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- LEADERBOARD -->
+    <section class="section">
+
+      <div class="section-head">
+        <h2>🏅 LEADERBOARD</h2>
+        <span>Local demo leaderboard</span>
+      </div>
+
+      <div class="card" id="leaderboard"></div>
+
+    </section>
+
+
+    <!-- RESET -->
+    <section class="section">
+
+      <div class="card">
+        <h3>⚙️ ACCOUNT</h3>
+        <div class="muted" style="margin-top:5px;">
+          Reset this demo profile and start again.
+        </div>
+
+        <button class="btn red" style="margin-top:14px;" onclick="resetAccount()">
+          RESET DEMO
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+
+    <h2>THIS IS JUST THE BEGINNING 🚀</h2>
+
+    <div style="margin-top:8px;">
+      ADAM ELAZRI — THE BEST CREATOR IN THE WORLD
+    </div>
+
+    <a
+      class="yt"
+      href="https://www.youtube.com/@mr_evadon"
+      target="_blank"
+      rel="noopener"
+    >
+      ▶ YOUTUBE
+    </a>
+
+  </footer>
+
+</div>
+
+
+<div id="toast"></div>
+
+
+<script>
+/* =========================================================
+   STORAGE
+========================================================= */
+
+const DEFAULT_DATA = {
+  username:"",
+  email:"",
+  coins:1000,
+  xp:0,
+  totalXP:0,
+  level:1,
+  styles:[],
+  activeStyle:"normal",
+  phones:[],
+  lastDaily:""
+};
+
+let data = JSON.parse(
+  localStorage.getItem("adamElazriData") || "null"
+);
+
+if(!data){
+  data = {...DEFAULT_DATA};
+}
+
+if(typeof data.totalXP !== "number"){
+  data.totalXP = Number(data.xp || 0);
+}
+
+if(!Array.isArray(data.styles)){
+  data.styles = [];
+}
+
+if(!Array.isArray(data.phones)){
+  data.phones = [];
+}
+
+function save(){
+  localStorage.setItem(
+    "adamElazriData",
+    JSON.stringify(data)
+  );
+}
+
+
+/* =========================================================
+   RANKS
+========================================================= */
+
+const RANKS = [
+  {min:0,name:"ROOKIE",icon:"🪨"},
+  {min:100,name:"BRONZE",icon:"🥉"},
+  {min:300,name:"SILVER",icon:"🥈"},
+  {min:600,name:"GOLD",icon:"🥇"},
+  {min:1000,name:"DIAMOND",icon:"💎"},
+  {min:1500,name:"MASTER",icon:"🔥"},
+  {min:2500,name:"GRANDMASTER",icon:"👑"},
+  {min:4000,name:"LEGEND",icon:"⚡"},
+  {min:6000,name:"MYTHIC",icon:"🌌"},
+  {min:10000,name:"CREATOR KING",icon:"🐉"}
+];
+
+function getRank(totalXP){
+  let current = RANKS[0];
+
+  for(const rank of RANKS){
+    if(totalXP >= rank.min){
+      current = rank;
+    }
+  }
+
+  return current;
+}
+
+function getNextRank(totalXP){
+  for(const rank of RANKS){
+    if(totalXP < rank.min){
+      return rank;
+    }
+  }
+
+  return null;
+}
+
+
+/* =========================================================
+   XP + LEVEL
+========================================================= */
+
+function addXP(amount){
+  data.xp += amount;
+  data.totalXP += amount;
+
+  while(data.xp >= 100){
+    data.xp -= 100;
+    data.level++;
+    data.coins += 50;
+
+    toast("LEVEL UP! +50 COINS ⭐");
+    playLevelSound();
+    flash();
+  }
+
+  save();
+  updateUI();
+}
+
+
+/* =========================================================
+   COINS
+========================================================= */
+
+function addCoins(amount){
+  data.coins += amount;
+
+  if(data.coins < 0){
+    data.coins = 0;
+  }
+
+  save();
+  updateUI();
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+function enterSite(){
+
+  const username =
+    document.getElementById("usernameInput")
+    .value.trim();
+
+  const email =
+    document.getElementById("emailInput")
+    .value.trim()
+    .toLowerCase();
+
+  if(username.length < 2){
+    toast("ENTER A VALID USERNAME");
+    return;
+  }
+
+  if(!/^[^\s@]+@gmail\.com$/i.test(email)){
+    toast("ENTER A VALID GMAIL");
+    return;
+  }
+
+  data.username = username;
+  data.email = email;
+
+  save();
+
+  document.getElementById("loginScreen")
+    .classList.add("hidden");
+
+  document.getElementById("app")
+    .classList.remove("hidden");
+
+  updateUI();
+
+  toast("WELCOME " + username.toUpperCase() + " 🚀");
+  playClickSound();
+}
+
+function logoutDemo(){
+  document.getElementById("app").classList.add("hidden");
+  document.getElementById("loginScreen").classList.remove("hidden");
+
+  document.getElementById("usernameInput").value = data.username;
+  document.getElementById("emailInput").value = data.email;
+}
+
+function resetAccount(){
+
+  const yes = confirm(
+    "Reset the entire demo profile?"
+  );
+
+  if(!yes) return;
+
+  localStorage.removeItem("adamElazriData");
+
+  location.reload();
+}
+
+
+/* =========================================================
+   UI
+========================================================= */
+
+function updateUI(){
+
+  const rank = getRank(data.totalXP);
+  const next = getNextRank(data.totalXP);
+
+  document.getElementById("navUser").textContent =
+    data.username || "Player";
+
+  document.getElementById("navCoins").textContent =
+    data.coins.toLocaleString();
+
+  document.getElementById("navLevel").textContent =
+    data.level;
+
+  document.getElementById("navRankIcon").textContent =
+    rank.icon;
+
+  document.getElementById("navRank").textContent =
+    rank.name;
+
+  document.getElementById("bigRankIcon").textContent =
+    rank.icon;
+
+  document.getElementById("bigRankName").textContent =
+    rank.name;
+
+  document.getElementById("currentXP").textContent =
+    data.xp;
+
+  document.getElementById("totalXP").textContent =
+    data.totalXP.toLocaleString();
+
+  document.getElementById("xpBar").style.width =
+    data.xp + "%";
+
+  if(next){
+    document.getElementById("rankProgressText").textContent =
+      (next.min - data.totalXP) +
+      " XP until " +
+      next.icon +
+      " " +
+      next.name;
+  }else{
+    document.getElementById("rankProgressText").textContent =
+      "FINAL RANK UNLOCKED 🐉";
+  }
+
+  renderRanks();
+  renderStore();
+  renderPhones();
+  renderLeaderboard();
+}
+
+
+/* =========================================================
+   RANK LIST
+========================================================= */
+
+function renderRanks(){
+
+  const box =
+    document.getElementById("rankList");
+
+  box.innerHTML = "";
+
+  for(const rank of RANKS){
+
+    const div =
+      document.createElement("div");
+
+    div.className = "rank-item";
+
+    const unlocked =
+      data.totalXP >= rank.min;
+
+    div.innerHTML = `
+      <div class="ri">${rank.icon}</div>
+      <div class="rn">${rank.name}</div>
+      <div class="rx">${rank.min} XP ${unlocked ? "✓" : "🔒"}</div>
+    `;
+
+    if(unlocked){
+      div.style.borderColor = "rgba(0,229,255,.28)";
+    }
+
+    box.appendChild(div);
+  }
+}
+
+
+/* =========================================================
+   DAILY REWARD
+========================================================= */
+
+function claimDaily(){
+
+  const today =
+    new Date().toISOString().slice(0,10);
+
+  if(data.lastDaily === today){
+    document.getElementById("dailyStatus").textContent =
+      "Already claimed today. Come back tomorrow.";
+    toast("ALREADY CLAIMED ⏰");
+    return;
+  }
+
+  data.lastDaily = today;
+  data.coins += 100;
+
+  save();
+  addXP(20);
+
+  document.getElementById("dailyStatus").textContent =
+    "CLAIMED: +100 COINS +20 XP 🎁";
+
+  toast("+100 COINS 🎁");
+  playWinSound();
+}
+
+
+/* =========================================================
+   STOP NUMBER
+========================================================= */
+
+let stopInterval = null;
+let stopRunning = false;
+let stopValue = 1;
+let stopTarget = 1;
+
+function startStop(){
+
+  if(stopRunning){
+    toast("ALREADY RUNNING");
+    return;
+  }
+
+  stopRunning = true;
+  stopValue = 1;
+  stopTarget = Math.floor(Math.random()*20)+1;
+
+  document.getElementById("stopTarget").textContent =
+    stopTarget;
+
+  document.getElementById("stopStatus").textContent =
+    "STOP EXACTLY ON " + stopTarget;
+
+  clearInterval(stopInterval);
+
+  stopInterval = setInterval(() => {
+
+    document.getElementById("stopNumber").textContent =
+      stopValue;
+
+    stopValue++;
+
+    if(stopValue > 20){
+      stopValue = 1;
+    }
+
+  }, 90);
+}
+
+function stopStop(){
+
+  if(!stopRunning){
+    toast("START FIRST");
+    return;
+  }
+
+  clearInterval(stopInterval);
+  stopRunning = false;
+
+  const finalValue = stopValue;
+
+  if(finalValue === stopTarget){
+
+    const reward =
+      100 + Math.floor(Math.random()*151);
+
+    data.coins += reward;
+
+    save();
+    addXP(40);
+
+    document.getElementById("stopStatus").textContent =
+      "PERFECT! +" + reward + " COINS 🔥";
+
+    toast("PERFECT STOP! +" + reward);
+    playWinSound();
+    flash();
+
+  }else{
+
+    document.getElementById("stopStatus").textContent =
+      "MISSED! TARGET WAS " + stopTarget;
+
+    toast("MISSED 😭");
+    playLoseSound();
+  }
+
+  save();
+  updateUI();
+}
+
+
+/* =========================================================
+   FREE LUCKY SPIN
+========================================================= */
+
+let luckyBusy = false;
+
+function luckySpin(){
+
+  if(luckyBusy) return;
+
+  luckyBusy = true;
+
+  const rewards = [
+    25,50,75,100,150,200,300,500
+  ];
+
+  let ticks = 0;
+
+  const timer = setInterval(() => {
+
+    const temp =
+      rewards[Math.floor(Math.random()*rewards.length)];
+
+    document.getElementById("luckyStatus").textContent =
+      "🎰 " + temp + " COINS";
+
+    ticks++;
+
+    if(ticks >= 14){
+
+      clearInterval(timer);
+
+      const reward =
+        rewards[Math.floor(Math.random()*rewards.length)];
+
+      data.coins += reward;
+
+      save();
+      addXP(25);
+
+      document.getElementById("luckyStatus").textContent =
+        "YOU WON +" + reward + " COINS 🎉";
+
+      toast("LUCKY SPIN +" + reward);
+      playWinSound();
+      flash();
+
+      luckyBusy = false;
+      updateUI();
+    }
+
+  }, 90);
+}
+
+
+/* =========================================================
+   QUICK CLICK
+========================================================= */
+
+let clickActive = false;
+let clickCount = 0;
+let clickTimer = null;
+
+function startClickGame(){
+
+  if(clickActive) return;
+
+  clickActive = true;
+  clickCount = 0;
+
+  document.getElementById("clickCount").textContent =
+    "0";
+
+  document.getElementById("clickStatus").textContent =
+    "CLICK FOR 5 SECONDS!";
+
+  clearTimeout(clickTimer);
+
+  clickTimer = setTimeout(() => {
+
+    clickActive = false;
+
+    const reward =
+      clickCount * 2;
+
+    data.coins += reward;
+
+    save();
+    addXP(Math.min(50,clickCount));
+
+    document.getElementById("clickStatus").textContent =
+      "FINISHED! +" + reward + " COINS";
+
+    toast("QUICK CLICK +" + reward);
+    playWinSound();
+    updateUI();
+
+  },5000);
+}
+
+function clickHit(){
+
+  if(!clickActive){
+    toast("START FIRST");
+    return;
+  }
+
+  clickCount++;
+
+  document.getElementById("clickCount").textContent =
+    clickCount;
+
+  playClickSound();
+}
+
+
+/* =========================================================
+   STORE
+========================================================= */
+
+const STORE_ITEMS = [
+  {id:"red",name:"RED",icon:"🔴",price:100},
+  {id:"gold",name:"GOLD",icon:"🟡",price:250},
+  {id:"crystal",name:"CRYSTAL",icon:"💎",price:500},
+  {id:"purple",name:"PURPLE",icon:"🟣",price:750},
+  {id:"matrix",name:"MATRIX",icon:"🟢",price:1000}
+];
+
+function renderStore(){
+
+  const grid =
+    document.getElementById("storeGrid");
+
+  grid.innerHTML = "";
+
+  for(const item of STORE_ITEMS){
+
+    const owned =
+      data.styles.includes(item.id);
+
+    const equipped =
+      data.activeStyle === item.id;
+
+    const div =
+      document.createElement("div");
+
+    div.className = "store-item";
+
+    div.innerHTML = `
+      <div class="store-emoji">${item.icon}</div>
+      <div class="store-name">${item.name}</div>
+      <div class="store-price">${item.price} 💰</div>
+
+      <button
+        class="btn ${equipped ? "green" : "secondary"}"
+        onclick="buyStyle('${item.id}')"
+      >
+        ${
+          equipped
+          ? "EQUIPPED ✓"
+          : owned
+          ? "EQUIP"
+          : "BUY"
+        }
+      </button>
+    `;
+
+    grid.appendChild(div);
+  }
+}
+
+function buyStyle(id){
+
+  const item =
+    STORE_ITEMS.find(x => x.id === id);
+
+  if(!item) return;
+
+  if(data.styles.includes(id)){
+
+    data.activeStyle = id;
+
+    save();
+    updateUI();
+
+    toast(item.name + " EQUIPPED ✨");
+    return;
+  }
+
+  if(data.coins < item.price){
+    toast("NOT ENOUGH COINS 💰");
+    return;
+  }
+
+  data.coins -= item.price;
+  data.styles.push(id);
+  data.activeStyle = id;
+
+  save();
+  updateUI();
+
+  toast(item.name + " UNLOCKED 🔥");
+  playBuySound();
+}
+
+
+/* =========================================================
+   PHONE DATABASE
+   In-game values only
+========================================================= */
+
+const NORMAL_PHONES = [
+
+  {brand:"Apple",model:"iPhone 14",rarity:"COMMON",sell:180,weight:28},
+  {brand:"Apple",model:"iPhone 15",rarity:"COMMON",sell:220,weight:24},
+  {brand:"Samsung",model:"Galaxy A55",rarity:"COMMON",sell:190,weight:22},
+  {brand:"Samsung",model:"Galaxy A75",rarity:"COMMON",sell:230,weight:18},
+  {brand:"Google",model:"Pixel 8",rarity:"COMMON",sell:240,weight:14},
+  {brand:"Motorola",model:"Moto G Stylus",rarity:"COMMON",sell:160,weight:18},
+
+  {brand:"Apple",model:"iPhone 15 Plus",rarity:"RARE",sell:330,weight:11},
+  {brand:"Apple",model:"iPhone 15 Pro",rarity:"RARE",sell:420,weight:9},
+  {brand:"Samsung",model:"Galaxy S23",rarity:"RARE",sell:390,weight:10},
+  {brand:"Google",model:"Pixel 8 Pro",rarity:"RARE",sell:430,weight:7},
+  {brand:"Motorola",model:"Edge 50",rarity:"RARE",sell:350,weight:8},
+
+  {brand:"Apple",model:"iPhone 16 Pro",rarity:"EPIC",sell:700,weight:4},
+  {brand:"Samsung",model:"Galaxy S24 Ultra",rarity:"EPIC",sell:850,weight:3.5},
+  {brand:"Google",model:"Pixel 9 Pro",rarity:"EPIC",sell:780,weight:3},
+  {brand:"Motorola",model:"Edge Ultra",rarity:"EPIC",sell:650,weight:3},
+
+  {brand:"Apple",model:"iPhone 16 Pro Max",rarity:"LEGENDARY",sell:1400,weight:1.2},
+  {brand:"Samsung",model:"Galaxy Z Fold",rarity:"LEGENDARY",sell:1600,weight:1},
+
+  {brand:"Google",model:"Pixel Future",rarity:"MYTHIC",sell:3000,weight:.35},
+  {brand:"Samsung",model:"Galaxy Cosmic",rarity:"MYTHIC",sell:4000,weight:.2},
+
+  {
+    brand:"REDMAGIC",
+    model:"11 PRO",
+    rarity:"MYTHIC",
+    sell:10000,
+    weight:.08
+  }
+
+];
+
+
+const VIP_PHONES = [
+
+  {brand:"Apple",model:"iPhone 16 Pro Max",rarity:"EPIC",sell:1000,weight:20},
+  {brand:"Samsung",model:"Galaxy S24 Ultra",rarity:"EPIC",sell:1100,weight:19},
+  {brand:"Google",model:"Pixel 9 Pro",rarity:"EPIC",sell:1050,weight:18},
+
+  {brand:"Motorola",model:"Razr Ultra",rarity:"LEGENDARY",sell:1700,weight:12},
+  {brand:"Apple",model:"iPhone Future",rarity:"LEGENDARY",sell:2200,weight:10},
+  {brand:"Samsung",model:"Galaxy Z Fold Special",rarity:"LEGENDARY",sell:2400,weight:8},
+
+  {brand:"ASUS",model:"ROG Phone Ultimate",rarity:"MYTHIC",sell:4000,weight:5},
+  {brand:"Sony",model:"Xperia Pro Ultimate",rarity:"MYTHIC",sell:4500,weight:3.5},
+  {brand:"OnePlus",model:"Pro Hyper",rarity:"MYTHIC",sell:5000,weight:2.5},
+
+  {
+    brand:"REDMAGIC",
+    model:"11 PRO",
+    rarity:"MYTHIC",
+    sell:10000,
+    weight:1.5
+  },
+
+  {
+    brand:"SECRET",
+    model:"NEON TITAN",
+    rarity:"SECRET",
+    sell:15000,
+    weight:.4
+  },
+
+  {
+    brand:"SECRET",
+    model:"CREATOR X",
+    rarity:"SECRET",
+    sell:25000,
+    weight:.1
+  }
+];
+
+
+function weightedRandom(list){
+
+  const total =
+    list.reduce((sum,p) => sum + p.weight,0);
+
+  let roll =
+    Math.random() * total;
+
+  for(const phone of list){
+
+    roll -= phone.weight;
+
+    if(roll <= 0){
+      return phone;
+    }
+  }
+
+  return list[0];
+}
+
+
+function phoneSpin(type){
+
+  const price =
+    type === "vip" ? 1500 : 500;
+
+  if(data.coins < price){
+    toast("NOT ENOUGH COINS 💰");
+    return;
+  }
+
+  data.coins -= price;
+  save();
+  updateUI();
+
+  const list =
+    type === "vip"
+    ? VIP_PHONES
+    : NORMAL_PHONES;
+
+  const result =
+    weightedRandom(list);
+
+  document.getElementById("dealerIcon").textContent =
+    "🎲";
+
+  document.getElementById("phoneResult").textContent =
+    type === "vip"
+    ? "VIP SPINNING... 👑"
+    : "NORMAL SPINNING...";
+
+  let loops = 0;
+
+  const timer = setInterval(() => {
+
+    const temp =
+      list[Math.floor(Math.random()*list.length)];
+
+    document.getElementById("dealerIcon").textContent =
+      "📱";
+
+    loops++;
+
+    if(loops >= 18){
+
+      clearInterval(timer);
+
+      const phone = {
+        id:crypto.randomUUID
+          ? crypto.randomUUID()
+          : String(Date.now()+Math.random()),
+        brand:result.brand,
+        model:result.model,
+        rarity:result.rarity,
+        sell:result.sell
+      };
+
+      data.phones.push(phone);
+
+      save();
+      updateUI();
+
+      document.getElementById("dealerIcon").textContent =
+        "📱";
+
+      document.getElementById("phoneResult").innerHTML =
+        `
+          🎉 YOU GOT
+          <strong>
+            ${escapeHTML(result.brand)} ${escapeHTML(result.model)}
+          </strong>
+          • ${escapeHTML(result.rarity)}
+        `;
+
+      toast(
+        result.brand +
+        " " +
+        result.model +
+        " UNLOCKED! 🔥"
+      );
+
+      playWinSound();
+      flash();
+    }
+
+  },80);
+}
+
+
+function renderPhones(){
+
+  const box =
+    document.getElementById("phoneInventory");
+
+  if(!data.phones.length){
+
+    box.innerHTML = `
+      <div class="muted">
+        No phones yet.<br><br>
+        Use Normal Spin or VIP Spin.
+      </div>
+    `;
+
+    return;
+  }
+
+  box.innerHTML = "";
+
+  for(const phone of data.phones){
+
+    const div =
+      document.createElement("div");
+
+    div.className = "phone-item";
+
+    div.innerHTML = `
+      <div class="phone-top">
+        <div class="phone-icon">📱</div>
+
+        <div>
+          <div class="phone-model">
+            ${escapeHTML(phone.brand)}
+            ${escapeHTML(phone.model)}
+          </div>
+
+          <div class="rarity"
+               style="color:${rarityColor(phone.rarity)}">
+            ${escapeHTML(phone.rarity)}
+          </div>
+        </div>
+      </div>
+
+      <div class="sell-value">
+        SELL: ${Number(phone.sell).toLocaleString()} 💰
+      </div>
+
+      <button
+        class="sell-btn"
+        onclick="sellPhone('${String(phone.id).replace(/'/g,"\\'")}')"
+      >
+        SELL PHONE
+      </button>
+    `;
+
+    box.appendChild(div);
+  }
+}
+
+
+function rarityColor(rarity){
+
+  if(rarity === "SECRET") return "#ff4d8d";
+  if(rarity === "MYTHIC") return "#b16cff";
+  if(rarity === "LEGENDARY") return "#ffd43b";
+  if(rarity === "EPIC") return "#c084fc";
+  if(rarity === "RARE") return "#38bdf8";
+
+  return "#94a3b8";
+}
+
+
+function sellPhone(id){
+
+  const index =
+    data.phones.findIndex(
+      p => String(p.id) === String(id)
+    );
+
+  if(index === -1) return;
+
+  const phone =
+    data.phones[index];
+
+  data.coins += Number(phone.sell);
+
+  data.phones.splice(index,1);
+
+  save();
+  addXP(10);
+
+  toast(
+    "SOLD FOR " +
+    Number(phone.sell).toLocaleString() +
+    " 💰"
+  );
+
+  playBuySound();
+}
+
+
+/* =========================================================
+   2D CAR GAME
+========================================================= */
+
+const canvas =
+  document.getElementById("carCanvas");
+
+const cctx =
+  canvas.getContext("2d");
+
+let carGameRunning = false;
+let carAnimation = null;
+let roadOffset = 0;
+let carLane = 1;
+let carScore = 0;
+let carCoinsCollected = 0;
+let carLives = 3;
+let carBoost = 0;
+
+let obstacles = [];
+let roadCoins = [];
+
+function resizeCarCanvas(){
+
+  const rect =
+    canvas.getBoundingClientRect();
+
+  const dpr =
+    window.devicePixelRatio || 1;
+
+  canvas.width =
+    Math.floor(rect.width*dpr);
+
+  canvas.height =
+    Math.floor(rect.height*dpr);
+
+  cctx.setTransform(
+    dpr,
+    0,
+    0,
+    dpr,
+    0,
+    0
+  );
+}
+
+window.addEventListener(
+  "resize",
+  resizeCarCanvas
+);
+
+resizeCarCanvas();
+
+
+function roadSize(){
+
+  const w =
+    canvas.clientWidth;
+
+  const h =
+    canvas.clientHeight;
+
+  return {
+    w,
+    h,
+    roadW:Math.min(w*0.72,430),
+    left:(w-Math.min(w*0.72,430))/2
+  };
+}
+
+
+function resetCarState(){
+
+  carLane = 1;
+  carScore = 0;
+  carCoinsCollected = 0;
+  carLives = 3;
+  carBoost = 0;
+  roadOffset = 0;
+
+  obstacles = [];
+  roadCoins = [];
+
+  updateCarHUD();
+}
+
+
+function startCarGame(){
+
+  if(carGameRunning){
+    toast("RACE ALREADY RUNNING");
+    return;
+  }
+
+  resetCarState();
+
+  carGameRunning = true;
+
+  document.getElementById("carStatus").textContent =
+    "RACE STARTED! DODGE! 🏎️";
+
+  spawnObstacle();
+  spawnRoadCoin();
+
+  loopCarGame();
+}
+
+
+function spawnObstacle(){
+
+  if(!carGameRunning) return;
+
+  const size = roadSize();
+
+  obstacles.push({
+    lane:Math.floor(Math.random()*3),
+    y:-80,
+    h:65,
+    speed:4 + Math.random()*2.5
+  });
+
+  setTimeout(
+    spawnObstacle,
+    750 + Math.random()*500
+  );
+}
+
+
+function spawnRoadCoin(){
+
+  if(!carGameRunning) return;
+
+  roadCoins.push({
+    lane:Math.floor(Math.random()*3),
+    y:-35,
+    size:14,
+    speed:4
+  });
+
+  setTimeout(
+    spawnRoadCoin,
+    500 + Math.random()*650
+  );
+}
+
+
+function laneX(lane){
+
+  const size = roadSize();
+
+  const laneWidth =
+    size.roadW/3;
+
+  return (
+    size.left +
+    laneWidth*lane +
+    laneWidth/2
+  );
+}
+
+
+function drawRoad(){
+
+  const size = roadSize();
+
+  cctx.clearRect(
+    0,
+    0,
+    size.w,
+    size.h
+  );
+
+  /* background */
+  cctx.fillStyle = "#05050a";
+  cctx.fillRect(
+    0,
+    0,
+    size.w,
+    size.h
+  );
+
+  /* neon side glow */
+  const grad =
+    cctx.createLinearGradient(
+      size.left,
+      0,
+      size.left+size.roadW,
+      0
+    );
+
+  grad.addColorStop(0,"#10102a");
+  grad.addColorStop(.5,"#0d0d17");
+  grad.addColorStop(1,"#10102a");
+
+  cctx.fillStyle = grad;
+
+  cctx.fillRect(
+    size.left,
+    0,
+    size.roadW,
+    size.h
+  );
+
+  /* side lines */
+  cctx.fillStyle = "#00e5ff";
+
+  cctx.fillRect(
+    size.left-3,
+    0,
+    3,
+    size.h
+  );
+
+  cctx.fillRect(
+    size.left+size.roadW,
+    0,
+    3,
+    size.h
+  );
+
+  /* lane lines */
+  const laneWidth =
+    size.roadW/3;
+
+  cctx.strokeStyle =
+    "rgba(255,255,255,.16)";
+
+  cctx.lineWidth = 3;
+
+  cctx.setLineDash([28,24]);
+
+  cctx.lineDashOffset =
+    -roadOffset;
+
+  for(let i=1;i<3;i++){
+
+    cctx.beginPath();
+
+    cctx.moveTo(
+      size.left+laneWidth*i,
+      0
+    );
+
+    cctx.lineTo(
+      size.left+laneWidth*i,
+      size.h
+    );
+
+    cctx.stroke();
+  }
+
+  cctx.setLineDash([]);
+}
+
+
+function drawPlayerCar(){
+
+  const size = roadSize();
+
+  const x =
+    laneX(carLane);
+
+  const y =
+    size.h-85;
+
+  /* shadow */
+  cctx.fillStyle =
+    "rgba(0,0,0,.35)";
+
+  cctx.beginPath();
+
+  cctx.ellipse(
+    x,
+    y+33,
+    28,
+    9,
+    0,
+    0,
+    Math.PI*2
+  );
+
+  cctx.fill();
+
+  /* body */
+  cctx.fillStyle =
+    "#8b5cf6";
+
+  roundRect(
+    cctx,
+    x-24,
+    y-32,
+    48,
+    65,
+    12
+  );
+
+  cctx.fill();
+
+  /* windows */
+  cctx.fillStyle =
+    "#b9f7ff";
+
+  roundRect(
+    cctx,
+    x-17,
+    y-22,
+    34,
+    18,
+    7
+  );
+
+  cctx.fill();
+
+  /* lights */
+  cctx.fillStyle =
+    "#00e5ff";
+
+  cctx.fillRect(
+    x-17,
+    y+16,
+    10,
+    6
+  );
+
+  cctx.fillRect(
+    x+7,
+    y+16,
+    10,
+    6
+  );
+}
+
+
+function drawObstacles(){
+
+  for(const o of obstacles){
+
+    const x =
+      laneX(o.lane);
+
+    cctx.fillStyle =
+      "#ff3e62";
+
+    roundRect(
+      cctx,
+      x-25,
+      o.y-30,
+      50,
+      o.h,
+      12
+    );
+
+    cctx.fill();
+
+    cctx.fillStyle =
+      "#ffd43b";
+
+    cctx.fillRect(
+      x-17,
+      o.y-13,
+      34,
+      7
+    );
+
+  }
+}
+
+
+function drawCoins(){
+
+  for(const coin of roadCoins){
+
+    const x =
+      laneX(coin.lane);
+
+    cctx.beginPath();
+
+    cctx.fillStyle =
+      "#ffd43b";
+
+    cctx.arc(
+      x,
+      coin.y,
+      coin.size,
+      0,
+      Math.PI*2
+    );
+
+    cctx.fill();
+
+    cctx.strokeStyle =
+      "#fff3a6";
+
+    cctx.lineWidth = 2;
+
+    cctx.stroke();
+  }
+}
+
+
+function roundRect(ctx,x,y,w,h,r){
+
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);
+  ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);
+  ctx.arcTo(x,y,x+w,y,r);
+  ctx.closePath();
+}
+
+
+function updateCarGame(){
+
+  const size = roadSize();
+
+  roadOffset +=
+    carBoost > 0 ? 10 : 5;
+
+  carBoost =
+    Math.max(0,carBoost-1);
+
+  for(const o of obstacles){
+
+    o.y +=
+      o.speed +
+      (carBoost>0 ? 3 : 0);
+  }
+
+  for(const coin of roadCoins){
+
+    coin.y +=
+      coin.speed +
+      (carBoost>0 ? 3 : 0);
+  }
+
+
+  /* obstacle collision */
+  const playerY =
+    size.h-85;
+
+  for(let i=obstacles.length-1;i>=0;i--){
+
+    const o = obstacles[i];
+
+    if(
+      o.lane === carLane &&
+      o.y > playerY-45 &&
+      o.y < playerY+45
+    ){
+
+      obstacles.splice(i,1);
+      carLives--;
+
+      toast("CRASH! ❤️ -1");
+      playLoseSound();
+
+      if(carLives <= 0){
+
+        finishCarGame();
+
+        return;
+      }
+    }
+
+    else if(o.y > size.h+90){
+
+      obstacles.splice(i,1);
+      carScore += 10;
+    }
+  }
+
+
+  /* coin collision */
+  for(let i=roadCoins.length-1;i>=0;i--){
+
+    const coin = roadCoins[i];
+
+    if(
+      coin.lane === carLane &&
+      coin.y > playerY-50 &&
+      coin.y < playerY+50
+    ){
+
+      roadCoins.splice(i,1);
+
+      carCoinsCollected += 1;
+      carScore += 25;
+
+      playClickSound();
+    }
+
+    else if(coin.y > size.h+40){
+
+      roadCoins.splice(i,1);
+    }
+  }
+
+  updateCarHUD();
+}
+
+
+function drawCarGame(){
+
+  drawRoad();
+  drawObstacles();
+  drawCoins();
+  drawPlayerCar();
+}
+
+
+function loopCarGame(){
+
+  if(!carGameRunning){
+
+    drawCarGame();
+    return;
+  }
+
+  updateCarGame();
+  drawCarGame();
+
+  carAnimation =
+    requestAnimationFrame(loopCarGame);
+}
+
+
+function updateCarHUD(){
+
+  document.getElementById("carScore").textContent =
+    carScore;
+
+  document.getElementById("carCoins").textContent =
+    carCoinsCollected;
+
+  document.getElementById("carLives").textContent =
+    carLives;
+}
+
+
+function moveCar(direction){
+
+  if(!carGameRunning){
+    toast("START THE RACE FIRST");
+    return;
+  }
+
+  if(direction === "left"){
+    carLane =
+      Math.max(0,carLane-1);
+  }
+
+  if(direction === "right"){
+    carLane =
+      Math.min(2,carLane+1);
+  }
+
+  playClickSound();
+}
+
+
+function boostCar(){
+
+  if(!carGameRunning){
+    toast("START THE RACE FIRST");
+    return;
+  }
+
+  carBoost = 35;
+
+  document.getElementById("carStatus").textContent =
+    "BOOST ACTIVATED ⚡";
+
+  playBuySound();
+}
+
+
+function finishCarGame(){
+
+  carGameRunning = false;
+
+  if(carAnimation){
+    cancelAnimationFrame(carAnimation);
+  }
+
+  const reward =
+    carCoinsCollected*20 +
+    Math.floor(carScore/10);
+
+  data.coins += reward;
+
+  save();
+  addXP(Math.min(100,Math.floor(carScore/5)));
+
+  document.getElementById("carStatus").textContent =
+    "RACE OVER — +" +
+    reward +
+    " COINS 🏁";
+
+  toast(
+    "RACE FINISHED +" +
+    reward +
+    " 💰"
+  );
+
+  playWinSound();
+  flash();
+  updateUI();
+}
+
+
+/* keyboard controls */
+window.addEventListener("keydown",(e)=>{
+
+  if(e.key === "ArrowLeft" || e.key.toLowerCase() === "a"){
+    moveCar("left");
+  }
+
+  if(e.key === "ArrowRight" || e.key.toLowerCase() === "d"){
+    moveCar("right");
+  }
+
+  if(e.code === "Space"){
+    boostCar();
+  }
+
+});
+
+
+/* initial car drawing */
+drawCarGame();
+
+
+/* =========================================================
+   LEADERBOARD
+========================================================= */
+
+function renderLeaderboard(){
+
+  const board =
+    document.getElementById("leaderboard");
+
+  const meRank =
+    getRank(data.totalXP);
+
+  const players = [
+
+    {
+      name:data.username || "PLAYER",
+      xp:data.totalXP,
+      icon:meRank.icon
+    },
+
+    {
+      name:"NEON_KING",
+      xp:9100,
+      icon:"🌌"
+    },
+
+    {
+      name:"VOID_X",
+      xp:6800,
+      icon:"🌌"
+    },
+
+    {
+      name:"PIXEL_LORD",
+      xp:4300,
+      icon:"⚡"
+    },
+
+    {
+      name:"GHOST_99",
+      xp:2900,
+      icon:"👑"
+    },
+
+    {
+      name:"RUSHER",
+      xp:1800,
+      icon:"🔥"
+    }
+
+  ];
+
+  players.sort((a,b)=>b.xp-a.xp);
+
+  board.innerHTML = "";
+
+  players.forEach((player,index)=>{
+
+    const row =
+      document.createElement("div");
+
+    row.className =
+      "leader-row";
+
+    row.innerHTML = `
+      <div class="leader-left">
+        <div class="position">
+          ${index+1}
+        </div>
+
+        <div>
+          ${player.icon}
+          <strong>${escapeHTML(player.name)}</strong>
+        </div>
+      </div>
+
+      <div>
+        ${Number(player.xp).toLocaleString()} XP
+      </div>
+    `;
+
+    board.appendChild(row);
+  });
+}
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function goTo(id){
+
+  const el =
+    document.getElementById(id);
+
+  if(el){
+    el.scrollIntoView({
+      behavior:"smooth"
+    });
+  }
+}
+
+let toastTimer = null;
+
+function toast(message){
+
+  const el =
+    document.getElementById("toast");
+
+  el.textContent = message;
+  el.classList.add("show");
+
+  clearTimeout(toastTimer);
+
+  toastTimer =
+    setTimeout(()=>{
+      el.classList.remove("show");
+    },2200);
+}
+
+function flash(){
+
+  const el =
+    document.getElementById("flash");
+
+  el.classList.remove("flash");
+
+  void el.offsetWidth;
+
+  el.classList.add("flash");
+}
+
+function escapeHTML(value){
+
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
+
+/* =========================================================
+   SOUND ENGINE
+========================================================= */
+
+let audioCtx = null;
+
+function getAudio(){
+
+  if(!audioCtx){
+
+    audioCtx =
+      new (
+        window.AudioContext ||
+        window.webkitAudioContext
+      )();
+  }
+
+  return audioCtx;
+}
+
+function beep(freq=700,duration=.08,type="sine"){
+
+  try{
+
+    const ctx =
+      getAudio();
+
+    if(ctx.state === "suspended"){
+      ctx.resume();
+    }
+
+    const osc =
+      ctx.createOscillator();
+
+    const gain =
+      ctx.createGain();
+
+    osc.type = type;
+    osc.frequency.value = freq;
+
+    gain.gain.setValueAtTime(
+      .045,
+      ctx.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+      .001,
+      ctx.currentTime+duration
+    );
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start();
+    osc.stop(
+      ctx.currentTime+duration
+    );
+
+  }catch(e){}
+}
+
+function playClickSound(){
+  beep(700,.045,"square");
+}
+
+function playBuySound(){
+  beep(500,.07);
+  setTimeout(()=>beep(800,.11),70);
+}
+
+function playWinSound(){
+  beep(600,.08);
+  setTimeout(()=>beep(820,.08),80);
+  setTimeout(()=>beep(1050,.15),160);
+}
+
+function playLoseSound(){
+  beep(200,.18,"sawtooth");
+}
+
+function playLevelSound(){
+  beep(700,.08);
+  setTimeout(()=>beep(900,.08),90);
+  setTimeout(()=>beep(1200,.18),180);
+}
+
+
+/* =========================================================
+   PARTICLES
+========================================================= */
+
+const pCanvas =
+  document.getElementById("particles");
+
+const pctx =
+  pCanvas.getContext("2d");
+
+let particles = [];
+
+function resizeParticles(){
+
+  pCanvas.width =
+    window.innerWidth;
+
+  pCanvas.height =
+    window.innerHeight;
+}
+
+window.addEventListener(
+  "resize",
+  resizeParticles
+);
+
+resizeParticles();
+
+for(let i=0;i<90;i++){
+
+  particles.push({
+    x:Math.random()*window.innerWidth,
+    y:Math.random()*window.innerHeight,
+    size:Math.random()*2+0.5,
+    speed:Math.random()*.55+.12,
+    alpha:Math.random()*.45+.08
+  });
+
+}
+
+function animateParticles(){
+
+  pctx.clearRect(
+    0,
+    0,
+    pCanvas.width,
+    pCanvas.height
+  );
+
+  for(const p of particles){
+
+    p.y -= p.speed;
+
+    if(p.y < -5){
+      p.y = pCanvas.height+5;
+      p.x = Math.random()*pCanvas.width;
+    }
+
+    pctx.globalAlpha = p.alpha;
+    pctx.fillStyle = "#ffffff";
+
+    pctx.beginPath();
+
+    pctx.arc(
+      p.x,
+      p.y,
+      p.size,
+      0,
+      Math.PI*2
+    );
+
+    pctx.fill();
+  }
+
+  requestAnimationFrame(
+    animateParticles
+  );
+}
+
+animateParticles();
+
+
+/* =========================================================
+   AUTO LOGIN + INIT
+========================================================= */
+
+if(data.username && data.email){
+
+  document.getElementById("loginScreen")
+    .classList.add("hidden");
+
+  document.getElementById("app")
+    .classList.remove("hidden");
+
+}
+
+updateUI();
+
+</script>
+
+</body>
+</html>
